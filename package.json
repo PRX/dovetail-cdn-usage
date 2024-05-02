@@ -1,0 +1,29 @@
+{
+  "name": "dovetail-cdn-usage",
+  "version": "0.0.0",
+  "description": "Lambda to query Dovetail CloudFront usage and insert into BigQuery",
+  "main": "index.mjs",
+  "type": "module",
+  "engines": {
+    "node": ">= 20.0.0"
+  },
+  "private": "true",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PRX/dovetail-cdn-usage.git"
+  },
+  "keywords": [
+    "cloudfront",
+    "athena",
+    "bigquery"
+  ],
+  "author": "ryan cavis <ryan@prx.org>",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/PRX/dovetail-cdn-usage/issues"
+  },
+  "homepage": "https://github.com/PRX/dovetail-cdn-usage#readme"
+}
