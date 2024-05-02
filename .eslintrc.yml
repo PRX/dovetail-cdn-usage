@@ -9,7 +9,3 @@ parserOptions:
 rules:
   no-console: off
   import/prefer-default-export: off
-  import/extensions:
-    - error
-    - always
-    - mjs: never

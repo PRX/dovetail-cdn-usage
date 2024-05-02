@@ -2,8 +2,7 @@
   "name": "dovetail-cdn-usage",
   "version": "0.0.0",
   "description": "Lambda to query Dovetail CloudFront usage and insert into BigQuery",
-  "main": "index.mjs",
-  "type": "module",
+  "main": "index.js",
   "engines": {
     "node": ">= 20.0.0"
   },
@@ -16,7 +15,9 @@
     "lint-fix": "npm run lint-fix-prettier && npm run lint-fix-es",
     "lint-fix-prettier": "npx prettier --check **/*.{json,yml} --write",
     "lint-fix-es": "npx eslint --fix '**/*.{js,mjs}'",
-    "test": "NODE_OPTIONS=\"$NODE_OPTIONS --experimental-vm-modules\" npx jest"
+    "start": "node runner.js",
+    "test": "npx jest",
+    "watch": "npx jest --watch"
   },
   "repository": {
     "type": "git",
@@ -48,6 +49,7 @@
   },
   "dependencies": {
     "@google-cloud/bigquery": "^7.6.1",
+    "dotenv": "^16.4.5",
     "lambda-log": "^3.1.0"
   }
 }
