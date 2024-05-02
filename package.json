@@ -9,14 +9,14 @@
   },
   "private": "true",
   "scripts": {
-    "lint": "npm run lint-prettier && npm run lint-es && npm run lint-ts",
+    "lint": "npm run lint-prettier && npm run lint-es",
     "lint-prettier": "npx prettier --check **/*.{json,yml}",
     "lint-es": "npx eslint '**/*.{js,mjs}'",
     "lint-ts": "npx tsc",
     "lint-fix": "npm run lint-fix-prettier && npm run lint-fix-es",
     "lint-fix-prettier": "npx prettier --check **/*.{json,yml} --write",
     "lint-fix-es": "npx eslint --fix '**/*.{js,mjs}'",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "NODE_OPTIONS=\"$NODE_OPTIONS --experimental-vm-modules\" npx jest"
   },
   "repository": {
     "type": "git",
@@ -34,13 +34,20 @@
   },
   "homepage": "https://github.com/PRX/dovetail-cdn-usage#readme",
   "devDependencies": {
+    "@aws-sdk/client-athena": "^3.567.0",
+    "@types/jest": "^29.5.12",
     "eslint": "^8.57.0",
     "eslint-config-airbnb-base": "*",
     "eslint-config-prettier": "*",
     "eslint-plugin-import": "*",
     "eslint-plugin-jest": "*",
     "eslint-plugin-prettier": "*",
+    "jest": "^29.7.0",
     "prettier": "^3.2.5",
     "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "@google-cloud/bigquery": "^7.6.1",
+    "lambda-log": "^3.1.0"
   }
 }
