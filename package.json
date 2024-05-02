@@ -9,6 +9,13 @@
   },
   "private": "true",
   "scripts": {
+    "lint": "npm run lint-prettier && npm run lint-es && npm run lint-ts",
+    "lint-prettier": "npx prettier --check **/*.{json,yml}",
+    "lint-es": "npx eslint '**/*.{js,mjs}'",
+    "lint-ts": "npx tsc",
+    "lint-fix": "npm run lint-fix-prettier && npm run lint-fix-es",
+    "lint-fix-prettier": "npx prettier --check **/*.{json,yml} --write",
+    "lint-fix-es": "npx eslint --fix '**/*.{js,mjs}'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -25,5 +32,15 @@
   "bugs": {
     "url": "https://github.com/PRX/dovetail-cdn-usage/issues"
   },
-  "homepage": "https://github.com/PRX/dovetail-cdn-usage#readme"
+  "homepage": "https://github.com/PRX/dovetail-cdn-usage#readme",
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-config-airbnb-base": "*",
+    "eslint-config-prettier": "*",
+    "eslint-plugin-import": "*",
+    "eslint-plugin-jest": "*",
+    "eslint-plugin-prettier": "*",
+    "prettier": "^3.2.5",
+    "typescript": "^5.4.5"
+  }
 }
