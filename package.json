@@ -19,6 +19,9 @@
     "test": "npx jest",
     "watch": "npx jest --watch"
   },
+  "jest": {
+    "resetMocks": true
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/PRX/dovetail-cdn-usage.git"
