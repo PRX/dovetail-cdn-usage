@@ -11,6 +11,6 @@ CMD [ "test" ]
 RUN dnf install -y rsync zip tar xz && dnf clean all && rm -rf /var/cache/dnf
 ADD yarn.lock ./
 ADD package.json ./
-RUN yarn install
+RUN npm install --quiet --global yarn && yarn install
 ADD . .
 RUN yarn run build
