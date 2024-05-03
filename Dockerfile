@@ -8,7 +8,7 @@ WORKDIR /app
 ENTRYPOINT [ "yarn", "run" ]
 CMD [ "test" ]
 
-RUN yum install -y rsync zip tar xz && yum clean all && rm -rf /var/cache/yum
+RUN dnf install -y rsync zip tar xz && dnf clean all && rm -rf /var/cache/dnf
 ADD yarn.lock ./
 ADD package.json ./
 RUN yarn install
