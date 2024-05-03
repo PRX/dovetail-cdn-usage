@@ -1,0 +1,18 @@
+version: 0.2
+env:
+  variables:
+    PRX_SPIRE_S3_PKG_PARAMETERS: LAMBDA_ZIP=/prx/stag/Spire/Dovetail-CDN_Usage/pkg/s3-object-key
+    PRX_S3_ARCHIVE_BUILD_PATH: /app/build.zip
+  exported-variables:
+    - PRX_SPIRE_S3_PKG_PARAMETERS
+    - LAMBDA_ZIP
+phases:
+  build:
+    commands:
+      - docker-compose build
+      - docker-compose run test
+  post_build:
+    commands:
+      - curl -sO "https://raw.githubusercontent.com/PRX/Infrastructure/main/ci/utility/post_build.sh"
+      - chmod +x post_build.sh
+      - . ./post_build.sh

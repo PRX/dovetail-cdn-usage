@@ -1,0 +1,9 @@
+.env
+.github
+build
+Dockerfile
+docker-compose.yml
+node_modules
+tmp
+*.log
+*.zip

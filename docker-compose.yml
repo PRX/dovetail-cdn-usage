@@ -1,0 +1,11 @@
+version: "2"
+services:
+  test:
+    build: .
+    image: dovetailcdnusage
+    command: test
+    volumes:
+      - ./index.js:/app/index.js
+      - ./index.test.js:/app/index.test.js
+      - ./lib:/app/lib
+      - ./package.json:/app/package.json

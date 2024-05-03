@@ -8,6 +8,10 @@
   },
   "private": "true",
   "scripts": {
+    "build": "yarn run build-sync && yarn run build-prune && yarn run build-zip",
+    "build-sync": "rsync -crl --delete --exclude-from .lambdaignore . build",
+    "build-prune": "cd build && yarn --production",
+    "build-zip": "rm -f build.zip && cd build && zip -rq ../build.zip .",
     "lint": "npm run lint-prettier && npm run lint-es",
     "lint-prettier": "npx prettier --check **/*.{json,yml}",
     "lint-es": "npx eslint '**/*.{js,mjs}'",
