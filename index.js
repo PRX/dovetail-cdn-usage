@@ -7,26 +7,48 @@ const util = require("./lib/util");
  * Entrypoint
  */
 exports.handler = async (event = {}) => {
+  let latestDay;
+
   try {
     if (event.day) {
-      await rollup(util.parseDate(event.day));
+      await exports.rollup(util.parseDate(event.day));
     } else {
-      const start = await bigquery.latestRollupDay();
-      const days = util.daysToProcess(start);
+      latestDay = await bigquery.latestRollupDay();
+      const days = util.daysToProcess(latestDay);
       for (const day of days) {
-        await rollup(day);
+        await exports.rollup(day);
+        latestDay = day;
       }
     }
   } catch (err) {
     log.error("error running rollups", { err });
     throw err;
+  } finally {
+    if (!event.day) {
+      exports.logFallingBehind(latestDay);
+    }
+  }
+};
+
+// log errors if we're far behind (or can't connect to BQ to check)
+exports.logFallingBehind = (latestDay) => {
+  if (latestDay) {
+    const daysBehind = Math.floor(bigquery.logExpirationDays() / 2);
+    const threshold = new Date();
+    threshold.setDate(threshold.getDate() - daysBehind);
+    if (latestDay < threshold) {
+      const latest = latestDay.toISOString().split("T").shift();
+      log.error("rollups behind", { latest });
+    }
+  } else {
+    log.error("rollups behind");
   }
 };
 
 /**
  * Rollup a single day
  */
-async function rollup(day) {
+exports.rollup = async (day) => {
   const dayStr = day.toISOString().split("T").shift();
   log.info(`rolling up ${dayStr}`);
 
@@ -53,4 +75,4 @@ async function rollup(day) {
   log.info(`bigquery ${dayStr}`, { elapsed: bqElapsed, rows: bqRows });
 
   return true;
-}
+};

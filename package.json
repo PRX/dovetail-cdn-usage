@@ -24,7 +24,7 @@
     "watch": "npx jest --watch"
   },
   "jest": {
-    "resetMocks": true
+    "restoreMocks": true
   },
   "repository": {
     "type": "git",
