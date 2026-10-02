@@ -42,7 +42,6 @@
   },
   "homepage": "https://github.com/PRX/dovetail-cdn-usage#readme",
   "devDependencies": {
-    "@aws-sdk/client-athena": "^3.567.0",
     "@types/jest": "^29.5.12",
     "eslint": "^8.57.0",
     "eslint-config-airbnb-base": "*",
@@ -55,6 +54,7 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
+    "@aws-sdk/client-athena": "^3.567.0",
     "@google-cloud/bigquery": "^7.6.1",
     "dotenv": "^16.4.5",
     "lambda-log": "^3.1.0"
